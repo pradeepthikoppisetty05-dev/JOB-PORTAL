@@ -47,6 +47,10 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('applications.index') }}">My Applications</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('jobs.saved') }}">Saved Jobs</a>
+            </li>
+
           @endif
         @endauth
       </ul>
@@ -67,7 +71,7 @@
 </nav>
 
 
-@foreach (['success', 'update', 'warning', 'apply','account','logout','position','edit','delete'] as $type)
+@foreach (['success', 'update', 'warning', 'apply','account','logout','position','edit','delete','save','unsave'] as $type)
     @if(session($type))
         @php
             $colors = [
@@ -80,6 +84,8 @@
                 'account' => '#e0f2fe',
                 'logout'  => '#e0f2fe',
                 'position'=> '#e0f2fe',
+                'save'  => '#d1fae5',
+                'unsave'   => '#d1fae5',
             ];
         @endphp
 

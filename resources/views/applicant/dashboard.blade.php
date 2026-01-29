@@ -18,6 +18,30 @@
 
   @foreach($positions as $position)
     <div class="card" style="border:1px solid #ddd; padding:15px;">
+              @auth
+        <div style="position:absolute; top:10px; right:10px;">
+            @if(Auth::user()->savedPositions->contains($position->id))
+                <form method="POST" action="{{ route('jobs.unsave', $position) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                            style="border:none; background:none; font-size:20px; color:gold;"
+                            title="Unsave Job">
+                        ★
+                    </button>
+                </form>
+            @else
+                <form method="POST" action="{{ route('jobs.save', $position) }}">
+                    @csrf
+                    <button type="submit"
+                            style="border:none; background:none; font-size:20px; color:#999;"
+                            title="Save Job">
+                        ☆
+                    </button>
+                </form>
+            @endif
+        </div>
+        @endauth
       <div class="card-body">
         <h3 class="card-title">{{ $position->title }}</h3>
         <p class="card-text">{{ $position->description }}</p>

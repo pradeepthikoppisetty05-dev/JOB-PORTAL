@@ -9,6 +9,8 @@ use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\MyApplicationController;
 use App\Http\Controllers\ApplicationmanagerController;
+use App\Http\Controllers\SavedJobController;
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -74,8 +76,16 @@ Route::middleware('auth')->group(function () {
         )->name('applications.index');
     });
     
+    Route::post('/positions/{position}/save', [SavedJobController::class, 'store'])
+        ->name('jobs.save');
+
+    Route::delete('/positions/{position}/unsave', [SavedJobController::class, 'destroy'])
+        ->name('jobs.unsave');
+
+    Route::get('/saved-positions', [SavedJobController::class, 'index'])
+    ->name('jobs.saved');
+
 
 });
-
 
 

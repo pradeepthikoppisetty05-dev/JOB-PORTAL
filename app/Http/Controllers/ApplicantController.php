@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Position;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicantController extends Controller
 {
@@ -13,7 +14,7 @@ class ApplicantController extends Controller
     }
 
     public function show(Position $position){
-        //$positions=Position::get();
-        return view('applicant.show',compact('position'));
+
+        return view('applicant.show',compact('position',));
     }
 }

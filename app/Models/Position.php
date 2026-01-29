@@ -23,4 +23,8 @@ class Position extends Model
         return $this->hasMany(Application::class);
     }
 
+    public function savedPositions(){
+        return $this->belongsToMany(User::class,'saved_positions')->withTimestamps();
+    }
+
 }

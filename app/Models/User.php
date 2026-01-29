@@ -3,9 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Position;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -48,17 +49,24 @@ class User extends Authenticatable
     }
 
     public function isEmployer()
-{
+    {
     return $this->role === 'employer';
-}
+    }
 
     public function isApplicant()
-{
+    {
     return $this->role === 'applicant';
-}
+    }
 
 
    public function applications(){
     return $this->hasMany(Application::class,'applicant_id');
    }
+
+   public function savedPositions()
+{
+    return $this->belongsToMany(Position::class, 'saved_positions')
+                ->withTimestamps();
+}
+
 }
