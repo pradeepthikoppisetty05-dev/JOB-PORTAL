@@ -6,6 +6,7 @@ use App\Models\Position;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\ApplicationShortlisted;
 
 class ApplicationmanagerController extends Controller
 {
@@ -30,6 +31,9 @@ class ApplicationmanagerController extends Controller
             'status'=> $request->status,
         ]);
 
+        if ($request->status === 'shortlisted') {
+          event(new ApplicationShortlisted($application));
+        }
         
         return back()->with('update','updated successfully');
 

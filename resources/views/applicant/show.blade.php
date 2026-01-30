@@ -33,7 +33,7 @@
 
           <input type="file" name="resume" class="form-control" required>
         </div>
-        <button class="btn btn-sucess w-100">Apply</button>
+        <button class="btn btn-primary btn-sucess w-100">Apply</button>
         </form>
       </div>
 
